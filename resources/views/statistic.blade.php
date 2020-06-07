@@ -16,6 +16,7 @@
                                     <th scope="col">Имя пользователя</th>
                                     <th scope="col">Кол-во рефералов</th>
                                     <th scope="col">Сумма на балансе</th>
+                                    <th scope="col">Дата регистрации</th>
                                     <th scope="col">Статус</th>
                                     <th scope="col">Действия</th>
                                 </tr>
@@ -26,6 +27,7 @@
                                     <td>Mark</td>
                                     <td>18</td>
                                     <td>$120</td>
+                                    <td>25.05.2020</td>
                                     <td>Активен</td>
                                     <td><button type="button" class="btn btn-danger btn-xs"><i class="ti-trash"></i> Заблокировать</button></td>
                                 </tr>
@@ -34,6 +36,7 @@
                                     <td>Mark</td>
                                     <td>18</td>
                                     <td>$120</td>
+                                    <td>25.05.2020</td>
                                     <td>Заблокирован</td>
                                     <td><button type="button" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Разблокировать</button></td>
                                 </tr>

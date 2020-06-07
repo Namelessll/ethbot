@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ServerModel;
 use Illuminate\Http\Request;
+use function GuzzleHttp\Promise\all;
 
 class HomeController extends Controller
 {
@@ -11,8 +13,14 @@ class HomeController extends Controller
      *
      * @return void
      */
+    static public $activityAr = array();
+    static public $activityStatus = 'on';
+
     public function __construct()
     {
+        $serverModel = new ServerModel();
+        self::$activityAr = $serverModel->getUserActivity();
+        self::$activityStatus = $serverModel->getSetting('activity');
         $this->middleware('auth');
     }
 
@@ -23,27 +31,44 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $serverModel = new ServerModel();
+        $data['user_activity'] = self::$activityAr;
+        $data['status_activity'] = self::$activityStatus;
+        $data['server_api'] = $serverModel->getSetting('server_api');
+        return view('home', $data);
     }
 
     public function viewManagement() {
-        return view('management');
+        $data['user_activity'] = self::$activityAr;
+        $data['status_activity'] = self::$activityStatus;
+        $serverModel = new ServerModel();
+        $data['bot_settings'] = $serverModel->getBotSettings();
+
+        return view('management', $data);
     }
 
     public function viewStatistic() {
-        return view('statistic');
+        $data['user_activity'] = self::$activityAr;
+        $data['status_activity'] = self::$activityStatus;
+        return view('statistic', $data);
     }
 
     public function viewQuestions() {
-        return view('questions');
+        $data['user_activity'] = self::$activityAr;
+        $data['status_activity'] = self::$activityStatus;
+        return view('questions', $data);
     }
 
     public function viewMailer() {
-        return view('mailer');
+        $data['user_activity'] = self::$activityAr;
+        $data['status_activity'] = self::$activityStatus;
+        return view('mailer', $data);
     }
 
     public function viewPayments() {
-        return view('payments');
+        $data['user_activity'] = self::$activityAr;
+        $data['status_activity'] = self::$activityStatus;
+        return view('payments', $data);
     }
 
 }

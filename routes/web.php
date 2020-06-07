@@ -12,17 +12,34 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+$token = "941359684:AAFDmLrGeY5AGuRhCaa6xIFYRShE3E7450w";
+
 Route::get('/', function () {
-    return redirect('/dashboard');
+    return redirect('/admin/dashboard');
 });
 
-Auth::routes();
-Route::get('/dashboard', 'HomeController@index')->name('index');
-Route::get('/dashboard/management', 'HomeController@viewManagement')->name('viewManagement');
-Route::get('/dashboard/statistic', 'HomeController@viewStatistic')->name('viewStatistic');
-Route::get('/dashboard/questions', 'HomeController@viewQuestions')->name('viewQuestions');
-Route::get('/dashboard/mailer', 'HomeController@viewMailer')->name('viewMailer');
-Route::get('/dashboard/payments', 'HomeController@viewPayments')->name('viewPayments');
+Route::post('/' . $token . '/webhook', 'Bot\Api\UpdateController@getWebhookUpdates')->name('getWebhookUpdates');
 
-/*POST*/
-Route::post('/api/send-mail', 'Bot\Mail\MailController@sendMailToUsers')->name('sendMailToUsers');
+Auth::routes();
+Route::get('/admin/dashboard', 'HomeController@index')->name('index');
+Route::get('/admin/dashboard/management', 'HomeController@viewManagement')->name('viewManagement');
+Route::get('/admin/dashboard/statistic', 'HomeController@viewStatistic')->name('viewStatistic');
+Route::get('/admin/dashboard/questions', 'HomeController@viewQuestions')->name('viewQuestions');
+Route::get('/admin/dashboard/mailer', 'HomeController@viewMailer')->name('viewMailer');
+Route::get('/admin/dashboard/payments', 'HomeController@viewPayments')->name('viewPayments');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin', function () {
+        return redirect('/admin/dashboard');
+    });
+
+    Route::post('/api/send-mail', 'Bot\Mail\MailController@sendMailToUsers')->name('sendMailToUsers');
+    Route::post('/api/save/settings', 'Bot\Connect\ConnectController@saveServerSetting')->name('saveServerSetting');
+    Route::post('/api/save/bot/settings', 'Bot\Connect\ConnectController@saveBotSetting')->name('saveBotSetting');
+    Route::post('/api/save/settings/activity', 'Bot\Connect\ConnectController@saveActivitySetting')->name('saveActivitySetting');
+
+    Route::post('/setwebhook', 'Bot\Connect\ConnectController@setWebhook')->name('setWebhook');
+    Route::post('/removewebhook', 'Bot\Connect\ConnectController@removeWebhook')->name('removeWebhook');
+
+});
+

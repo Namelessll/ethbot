@@ -210,3 +210,16 @@
         background-color:rgb(255,255,255);
     }
 }
+
+.s-swtich label:after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 90px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
