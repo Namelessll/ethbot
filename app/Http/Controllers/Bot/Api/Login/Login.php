@@ -48,4 +48,15 @@ class Login
         $loginModel = new LoginModel();
         return $loginModel->getUserField($userId, $code);
     }
+
+    public function verifyUser($userId) {
+        $loginModel = new LoginModel();
+        return $loginModel->verifyUser($userId);
+    }
+
+    public function addReferalToUser($userId) {
+        $loginModel = new LoginModel();
+        return $loginModel->addReferalToUser($userId);
+    }
+
 }

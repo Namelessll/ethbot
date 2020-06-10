@@ -18,10 +18,13 @@ class CreateTableSettingsBot extends Migration
             $table->string('channel_link')->nullable();
             $table->bigInteger('channel_id')->default(0);
             $table->longText('welcome_message')->nullable();
+            $table->longText('ask_question_message')->nullable();
+            $table->longText('question_answers')->nullable();
             $table->double('payment_registration')->default(0);
             $table->double('payment_out')->default(0);
             $table->double('payment_min')->default(0);
             $table->double('payment_max')->default(0);
+            $table->double('token_course')->default(0);
             $table->double('payment_by_refer')->default(0);
             $table->integer('payment_by_refer_percent')->default(0);
         });

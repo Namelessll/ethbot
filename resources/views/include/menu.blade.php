@@ -11,9 +11,9 @@
                 <li @if(\Request::route()->getName() == "viewStatistic") class="active" @endif>
                     <a href="{{route('viewStatistic')}}" aria-expanded="true"><i class="fa fa-list"></i><span>Bot statistic</span></a>
                 </li>
-                <li @if(\Request::route()->getName() == "viewQuestions") class="active" @endif>
-                    <a href="{{route('viewQuestions')}}" aria-expanded="true"><i class="fa fa-question-circle"></i><span>Users questions</span></a>
-                </li>
+{{--                <li @if(\Request::route()->getName() == "viewQuestions") class="active" @endif>--}}
+{{--                    <a href="{{route('viewQuestions')}}" aria-expanded="true"><i class="fa fa-question-circle"></i><span>Users questions</span></a>--}}
+{{--                </li>--}}
                 <li @if(\Request::route()->getName() == "viewMailer") class="active" @endif>
                     <a href="{{route('viewMailer')}}" aria-expanded="true"><i class="fa fa-mail-reply-all"></i><span>Mailer</span></a>
                 </li>

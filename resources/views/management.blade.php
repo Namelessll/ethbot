@@ -14,6 +14,10 @@
                     <form action="{{route('saveBotSetting')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                                <label for="token_course" class="col-form-label">Курс токена, $</label>
+                                <input class="form-control" type="text" placeholder="2" id="token_course" name="token_course" required @if(isset($bot_settings[0]->token_course)) value="{{$bot_settings[0]->token_course}}" @endif>
+                            </div>
                             <div class="col-md-6 mb-3">
                                 <label for="channel_link" class="col-form-label">Ссылка на канал</label>
                                 <input class="form-control" type="text" placeholder="https://123.com" id="channel_link" name="channel_link" required @if(isset($bot_settings[0]->channel_link)) value="{{$bot_settings[0]->channel_link}}" @endif>
@@ -25,6 +29,14 @@
                             <div class="col-md-12 mb-3">
                                 <label for="welcome_message" class="col-form-label">Настройка приветственного сообщения для пользователей</label>
                                 <textarea class="form-control" id="welcome_message" placeholder="Привет!" name="welcome_message" style="resize: none;" cols="30" rows="7" required >@if(isset($bot_settings[0]->welcome_message)){{$bot_settings[0]->welcome_message}}@endif</textarea>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="ask_question_message" class="col-form-label">Настройка сообщения для кнопки "❓ Задать вопрос"</label>
+                                <textarea class="form-control" id="ask_question_message" placeholder="По поводу вопросов обратитесь к @manager" name="ask_question_message" style="resize: none;" cols="30" rows="7" required >@if(isset($bot_settings[0]->ask_question_message)){{$bot_settings[0]->ask_question_message}}@endif</textarea>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="question_answers" class="col-form-label">Настройка сообщения для кнопки "💬 Вопрос/Ответ"</label>
+                                <textarea class="form-control" id="question_answers" placeholder="Вопрос -> Ответ" name="question_answers" style="resize: none;" cols="30" rows="7" required >@if(isset($bot_settings[0]->question_answers)){{$bot_settings[0]->question_answers}}@endif</textarea>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="payment_registration" class="col-form-label">Сумма выплаты при регистрации</label>
@@ -43,7 +55,7 @@
                                 <input class="form-control" type="text" placeholder="0.00001900" id="payment_max" name="payment_max" required @if(isset($bot_settings[0]->payment_max)) value="{{number_format($bot_settings[0]->payment_max, 8, ".", "")}}" @endif>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="payment_by_refer" class="col-form-label">Сумма сатоши за реферала</label>
+                                <label for="payment_by_refer" class="col-form-label">Сумма XXX coin за реферала</label>
                                 <input class="form-control" type="text" placeholder="0.00000500" id="payment_by_refer" name="payment_by_refer" required @if(isset($bot_settings[0]->payment_by_refer)) value="{{number_format($bot_settings[0]->payment_by_refer, 8, ".", "")}}" @endif>
                             </div>
                             <div class="col-md-12 mb-1">
