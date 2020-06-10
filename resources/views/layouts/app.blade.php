@@ -111,7 +111,7 @@
                                 <form action="{{route('saveActivitySetting')}}" method="POST" id="activity_form" enctype="multipart/form-data">
                                     @csrf
 
-                                    <input onclick="$('#activity_form').submit();" type="checkbox" id="switch1" @if($status_activity[0]->setting_value == 'on') checked @endif name="status" />
+                                    <input onclick="$('#activity_form').submit();" type="checkbox" id="switch1" @if(isset($status_activity[0]->setting_value) && $status_activity[0]->setting_value == 'on') checked @endif name="status" />
                                     <label for="switch1">Toggle</label>
                                 </form>
 

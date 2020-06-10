@@ -15,8 +15,8 @@ class CreateTableSettingsBot extends Migration
     {
         Schema::create('table_settings_bot', function (Blueprint $table) {
             $table->id();
-            $table->string('captcha_question')->nullable();
-            $table->string('captcha_answer')->nullable();
+            $table->string('channel_link')->nullable();
+            $table->bigInteger('channel_id')->default(0);
             $table->longText('welcome_message')->nullable();
             $table->double('payment_registration')->default(0);
             $table->double('payment_out')->default(0);

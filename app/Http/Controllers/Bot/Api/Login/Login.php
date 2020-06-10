@@ -35,4 +35,17 @@ class Login
         else
             return false;
     }
+
+    public function registerUser($userId, $userName, $inviteId = 0) {
+        $loginModel = new LoginModel();
+        if (!isset($userName))
+            $userName = 'User ' . $userId;
+
+        $loginModel->registerNewUser($userId, $userName, $inviteId);
+    }
+
+    public function getUserField($userId, $code) {
+        $loginModel = new LoginModel();
+        return $loginModel->getUserField($userId, $code);
+    }
 }

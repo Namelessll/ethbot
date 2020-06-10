@@ -15,12 +15,12 @@
                         @csrf
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
-                                <label for="captcha_question" class="col-form-label">Настройка Captcha для регистрации пользователей</label>
-                                <input class="form-control" type="text" placeholder="5+6=" id="captcha_question" name="captcha_question" required @if(isset($bot_settings[0]->captcha_question)) value="{{$bot_settings[0]->captcha_question}}" @endif>
+                                <label for="channel_link" class="col-form-label">Ссылка на канал</label>
+                                <input class="form-control" type="text" placeholder="https://123.com" id="channel_link" name="channel_link" required @if(isset($bot_settings[0]->channel_link)) value="{{$bot_settings[0]->channel_link}}" @endif>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="captcha_answer" class="col-form-label">Ответ на Captcha</label>
-                                <input class="form-control" type="text" placeholder="11" id="captcha_answer" name="captcha_answer" @if(isset($bot_settings[0]->captcha_answer)) value="{{$bot_settings[0]->captcha_answer}}" @endif>
+                                <label for="channel_id" class="col-form-label">ID чата или супер-группы</label>
+                                <input class="form-control" type="text" placeholder="345246758562" id="channel_id" name="channel_id" required @if(isset($bot_settings[0]->channel_id)) value="{{$bot_settings[0]->channel_id}}" @endif>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="welcome_message" class="col-form-label">Настройка приветственного сообщения для пользователей</label>

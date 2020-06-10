@@ -87,8 +87,8 @@ class ServerModel extends Model
         if ($count > 0)
             return DB::table('table_settings_bot')
                 ->update([
-                    'captcha_question' => $data['captcha_question'],
-                    'captcha_answer' => $data['captcha_answer'],
+                    'channel_link' => $data['channel_link'],
+                    'channel_id' => $data['channel_id'],
                     'welcome_message' => $data['welcome_message'],
                     'payment_registration' => $data['payment_registration'],
                     'payment_out' => $data['payment_out'],
@@ -100,8 +100,8 @@ class ServerModel extends Model
         else
             return DB::table('table_settings_bot')
                 ->insert([
-                    'captcha_question' => $data['captcha_question'],
-                    'captcha_answer' => $data['captcha_answer'],
+                    'channel_link' => $data['channel_link'],
+                    'channel_id' => $data['channel_id'],
                     'welcome_message' => $data['welcome_message'],
                     'payment_registration' => $data['payment_registration'],
                     'payment_out' => $data['payment_out'],

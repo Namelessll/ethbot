@@ -16,9 +16,11 @@ class CreateTableBotUsers extends Migration
         Schema::create('table_bot_users', function (Blueprint $table) {
             $table->bigIncrements('user_id');
             $table->string('username')->nullable();
-            $table->double('balance')->default(0);
-            $table->bigInteger('referals')->nullable(0);
-            $table->bigInteger('invite')->nullable();
+            $table->double('balanceToken')->default(0);
+            $table->double('balanceEth')->default(0);
+            $table->bigInteger('referals')->default(0);
+            $table->bigInteger('invite')->default(0);
+            $table->boolean('status')->default(false);
             $table->boolean('ban')->default(false);
             $table->timestamps();
         });
