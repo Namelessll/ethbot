@@ -4,8 +4,11 @@
 namespace App\Http\Controllers\Bot\Api\Balance;
 
 
+use App\Http\Controllers\Bot\Api\Login\Login;
+use App\Models\ServerModel;
 use App\UserModel;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 
 class BalanceClass
 {
@@ -47,6 +50,41 @@ class BalanceClass
         } else {
             return false;
         }
+    }
+
+    public function tryGetPay($userId) {
+        $serverModel = new ServerModel();
+        $minPay = $serverModel->getBotSetting('payment_out')[0]->payment_out;
+        $userBalance = Login::getInstance()->getUserField($userId, 'balanceEth')[0]->balanceEth;
+
+        if ($userBalance < $minPay)
+            return false;
+        else
+            return true;
+    }
+
+    public function tryGetPayOnStep($userId, $pay) {
+        $serverModel = new ServerModel();
+        $minPay = $serverModel->getBotSetting('payment_out')[0]->payment_out;
+        $userBalance = Login::getInstance()->getUserField($userId, 'balanceEth')[0]->balanceEth;
+
+        if ($userBalance >= $pay && $pay >= $minPay)
+            return true;
+        else
+            return false;
+    }
+
+    public function getEthCourseInfo() {
+        $serverModel = new ServerModel();
+        return $serverModel->getEthCourse();
+    }
+
+    public function updateEthCourseInfo() {
+        $serverModel = new ServerModel();
+        $client = new Client(['base_uri' => 'https://api.binance.com/api/v1/ticker/24hr?symbol=ETHUSDT']);
+        $value = json_decode($client->request('GET', '')->getBody()->getContents());
+        $serverModel->updateEthCourse($value->askPrice);
+        return $value->askPrice;
     }
 
 }

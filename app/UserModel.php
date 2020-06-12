@@ -8,6 +8,21 @@ use DB;
 
 class UserModel extends Model
 {
+    /*Обновление поля userId и field*/
+    public static function updateUserField($userId, $field, $value) {
+        return DB::table('table_bot_users')
+            ->where('table_bot_users.user_id', $userId)
+            ->update([
+                $field => $value
+            ]);
+    }
+
+    public static function getUsers() {
+        return DB::table('table_bot_users')
+            ->select('table_bot_users.*')
+            ->paginate(10);
+    }
+
     /*Обновление поля Balance*/
     public function changeBalance($userId, $value, $balanceType, $typeOperation) {
         $userBalanceNow = DB::table('table_bot_users')
@@ -51,6 +66,31 @@ class UserModel extends Model
             ->update([
                 'created_at' => (string) Carbon::now()
             ]);
+    }
+
+    public function addTransaction($userId, $valet, $value) {
+        return DB::table('table_transactions')
+            ->insert([
+                'user_id' => $userId,
+                'valet' => $valet,
+                'value' => $value,
+                'created_at' => Carbon::now()
+            ]);
+    }
+
+    public static function updateTransaction($id, $userId, $status) {
+        return DB::table('table_transactions')
+            ->where('table_transactions.id', $id)
+            ->where('table_transactions.user_id', $userId)
+            ->update([
+                'status' => $status
+            ]);
+    }
+
+    public static function getAllTransaction() {
+        return DB::table('table_transactions')
+            ->select('table_transactions.*')
+            ->paginate();
     }
 
 }

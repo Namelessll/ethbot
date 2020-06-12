@@ -41,7 +41,20 @@ class KeyboardBot
 
     public function getProfileKeyboard() {
         return [
-            ['💸 Вывести', '⚖️ Конвертировать']
+            ['💸 Вывести', '⚖️ Конвертировать'],
+            ['🔙 Назад']
+        ];
+    }
+
+    public function getManagerButton($manager) {
+        return [
+          [['text'=> "Связаться с менеджером", 'url' => 'https://t.me/' . $manager]]
+        ];
+    }
+
+    public function getBack() {
+        return [
+            ['🔙 Назад']
         ];
     }
 

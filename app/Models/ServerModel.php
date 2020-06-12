@@ -91,6 +91,7 @@ class ServerModel extends Model
                     'channel_id' => $data['channel_id'],
                     'welcome_message' => $data['welcome_message'],
                     'ask_question_message' => $data['ask_question_message'],
+                    'manager' => $data['manager'],
                     'question_answers' => $data['question_answers'],
                     'payment_registration' => $data['payment_registration'],
                     'payment_out' => $data['payment_out'],
@@ -107,6 +108,7 @@ class ServerModel extends Model
                     'channel_id' => $data['channel_id'],
                     'welcome_message' => $data['welcome_message'],
                     'ask_question_message' => $data['ask_question_message'],
+                    'manager' => $data['manager'],
                     'question_answers' => $data['question_answers'],
                     'payment_registration' => $data['payment_registration'],
                     'payment_out' => $data['payment_out'],
@@ -116,5 +118,19 @@ class ServerModel extends Model
                     'payment_by_refer' => $data['payment_by_refer'],
                     'payment_by_refer_percent' => $data['payment_by_refer_percent'],
                 ]);
+    }
+
+    public function getEthCourse() {
+        return DB::table('table_eth_course')
+            ->select('table_eth_course.*')
+            ->get();
+    }
+
+    public function updateEthCourse($course) {
+        return DB::table('table_eth_course')
+            ->update([
+                'value' => $course,
+                'created_at' => Carbon::now()
+            ]);
     }
 }

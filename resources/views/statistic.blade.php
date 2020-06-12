@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Статистика бота</h4>
-                    <p>Кол-во зарегистрированных: <strong>63441 чел.</strong></p>
+                    <p>Кол-во зарегистрированных: <strong>{{count($users)}} чел.</strong></p>
                     <div class="single-table">
                         <div class="table-responsive">
                             <table class="table table-bordered text-center">
@@ -15,32 +15,43 @@
                                     <th scope="col">ID</th>
                                     <th scope="col">Имя пользователя</th>
                                     <th scope="col">Кол-во рефералов</th>
-                                    <th scope="col">Сумма на балансе</th>
+                                    <th scope="col">XXX coin</th>
+                                    <th scope="col">ETH</th>
                                     <th scope="col">Дата регистрации</th>
                                     <th scope="col">Статус</th>
                                     <th scope="col">Действия</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>18</td>
-                                    <td>$120</td>
-                                    <td>25.05.2020</td>
-                                    <td>Активен</td>
-                                    <td><button type="button" class="btn btn-danger btn-xs"><i class="ti-trash"></i> Заблокировать</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>18</td>
-                                    <td>$120</td>
-                                    <td>25.05.2020</td>
-                                    <td>Заблокирован</td>
-                                    <td><button type="button" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Разблокировать</button></td>
-                                </tr>
+                                @foreach($users as $user)
+                                    <tr>
+                                        <th scope="row">{{$user->user_id}}</th>
+                                        <td>{{$user->username}}</td>
+                                        <td>{{$user->referals}}</td>
+                                        <td>{{$user->balanceToken}}</td>
+                                        <td>{{$user->balanceEth}}</td>
+                                        <td>{{$user->created_at}}</td>
+                                        <td>@if($user->ban == 1)Заблокирован @else Активен @endif</td>
+                                        <td>
+                                            @if($user->ban == 0)
+                                                <form action="{{route('banStatusUser')}}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="hidden" name="user_id" value="{{$user->user_id}}">
+                                                    <button type="submit" class="btn btn-danger btn-xs"><i class="ti-trash"></i> Заблокировать</button>
+                                                </form>
+                                            @else
+                                                <form action="{{route('unBanStatusUser')}}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="hidden" name="user_id" value="{{$user->user_id}}">
+                                                    <button type="submit" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Разблокировать</button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                                 </tbody>
+                                {{$users->links()}}
                             </table>
                         </div>
                     </div>

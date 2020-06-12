@@ -55,9 +55,6 @@
                 </div>
                 <div class="col-md-6 col-sm-4 clearfix">
                     <ul class="notification-area pull-right">
-                        <li class="dropdown">
-                            <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
-                        </li>
                         <li class="settings-btn">
                             <i class="ti-settings"></i>
                         </li>

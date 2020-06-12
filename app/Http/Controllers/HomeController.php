@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ServerModel;
+use App\UserModel;
 use Illuminate\Http\Request;
 use function GuzzleHttp\Promise\all;
 
@@ -50,6 +51,7 @@ class HomeController extends Controller
     public function viewStatistic() {
         $data['user_activity'] = self::$activityAr;
         $data['status_activity'] = self::$activityStatus;
+        $data['users'] = UserModel::getUsers();
         return view('statistic', $data);
     }
 
@@ -68,6 +70,7 @@ class HomeController extends Controller
     public function viewPayments() {
         $data['user_activity'] = self::$activityAr;
         $data['status_activity'] = self::$activityStatus;
+        $data['payments'] = UserModel::getAllTransaction();
         return view('payments', $data);
     }
 

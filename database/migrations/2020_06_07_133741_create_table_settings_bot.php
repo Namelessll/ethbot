@@ -19,6 +19,7 @@ class CreateTableSettingsBot extends Migration
             $table->bigInteger('channel_id')->default(0);
             $table->longText('welcome_message')->nullable();
             $table->longText('ask_question_message')->nullable();
+            $table->longText('manager')->nullable();
             $table->longText('question_answers')->nullable();
             $table->double('payment_registration')->default(0);
             $table->double('payment_out')->default(0);

@@ -30,9 +30,13 @@
                                 <label for="welcome_message" class="col-form-label">Настройка приветственного сообщения для пользователей</label>
                                 <textarea class="form-control" id="welcome_message" placeholder="Привет!" name="welcome_message" style="resize: none;" cols="30" rows="7" required >@if(isset($bot_settings[0]->welcome_message)){{$bot_settings[0]->welcome_message}}@endif</textarea>
                             </div>
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="ask_question_message" class="col-form-label">Настройка сообщения для кнопки "❓ Задать вопрос"</label>
                                 <textarea class="form-control" id="ask_question_message" placeholder="По поводу вопросов обратитесь к @manager" name="ask_question_message" style="resize: none;" cols="30" rows="7" required >@if(isset($bot_settings[0]->ask_question_message)){{$bot_settings[0]->ask_question_message}}@endif</textarea>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="manager" class="col-form-label">Username менеджера</label>
+                                <input type="text" class="form-control" id="manager" placeholder="@manager" name="manager" style="resize: none;" cols="30" rows="7" required >@if(isset($bot_settings[0]->manager)){{$bot_settings[0]->manager}}@endif
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="question_answers" class="col-form-label">Настройка сообщения для кнопки "💬 Вопрос/Ответ"</label>

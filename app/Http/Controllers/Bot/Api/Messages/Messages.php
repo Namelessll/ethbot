@@ -68,6 +68,11 @@ class Messages
         return "💲 <b>Текущий курс " . self::$coin . ":</b> \n\n1 токен => " . $serverModel->getBotSetting($code)[0]->$code . "$";
     }
 
+    public function getCourseConverterMessage($code) {
+        $serverModel = new ServerModel();
+        return "💲 <b>Текущий курс монеты " . self::$coin . "</b> - " . $serverModel->getBotSetting($code)[0]->$code . "$\n\n<b>⚖️ Введите количество монет для обмена.</b>";
+    }
+
     public function getBonus() {
         return 'Ты перешел в раздел <b>"🎁 Получить бонус"</b>. Выбери один из квадратов получи приз.';
     }
@@ -75,4 +80,41 @@ class Messages
     public function getBonusFailTimeout($timeout) {
         return '⏱ <b>До следющего получения бонуса:</b> ' . $timeout;
     }
+
+    public function getRewardMessage($value) {
+        return "<b>Поздравляем!</b>\n\n💸 Вы получили приз в размере: " . $value . " " . self::$coin . " coin";
+    }
+
+    public function getMyValet($coin, $eth) {
+        return "<b>Ваш баланс</b>\n\n💲<b> " . self::$coin . " coin: </b>" . $coin . "\n<b>💸 ETH: </b>" . $eth;
+    }
+
+    public function getPayError($value) {
+        return "⚠️ <b>Внимание! Минимальная сумма для вывода составляет:</b> " . $value . " ETH";
+    }
+
+    public function getPaySuccessFirst() {
+        return "♻️ <b>Введите ваш ETH-кошелек!</b> Например: fd7s89f23jhkkzxc9df80250e";
+    }
+
+    public function getPaySuccessSecond() {
+        return "♻️ <b>Введите вашу сумму для вывода!</b> Например: 0.0002";
+    }
+
+    public function getPaySuccessThird() {
+        return "♻️ <b>Отлично ваша заявка принята и направлена на обработку!</b>\nОжидайте пока менеджер одобрит вашу заявку.";
+    }
+
+    public function getPayErrorSecond($value) {
+        return "⚠️ <b>На вашем балансе недостаточно средств либо введенная сумма слишком мала!</b>" . "\n\n<b>Минимальная сумма для вывода составляет:</b> " . $value . " ETH";
+    }
+
+    public function getConvertError() {
+        return "⚠️ <b>На вашем балансе недостаточно средств!</b>";
+    }
+
+    public function getConvertReady($value) {
+        return "♻️ <b>Отлично за обмен вы получили:</b>\n<b>" . $value . " ETH</b>";
+    }
+
 }

@@ -36,6 +36,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/api/send-mail', 'Bot\Mail\MailController@sendMailToUsers')->name('sendMailToUsers');
     Route::post('/api/save/settings', 'Bot\Connect\ConnectController@saveServerSetting')->name('saveServerSetting');
     Route::post('/api/save/bot/settings', 'Bot\Connect\ConnectController@saveBotSetting')->name('saveBotSetting');
+
+    Route::post('/api/user/ban', 'Bot\Api\UpdateController@banStatusUser')->name('banStatusUser');
+    Route::post('/api/user/unban', 'Bot\Api\UpdateController@unBanStatusUser')->name('unBanStatusUser');
+
+
+    Route::post('/api/transaction/accept', 'Bot\Api\UpdateController@transactionAccept')->name('transactionAccept');
+    Route::post('/api/transaction/decline', 'Bot\Api\UpdateController@transactionDecline')->name('transactionDecline');
+
     Route::post('/api/save/settings/activity', 'Bot\Connect\ConnectController@saveActivitySetting')->name('saveActivitySetting');
 
     Route::post('/setwebhook', 'Bot\Connect\ConnectController@setWebhook')->name('setWebhook');

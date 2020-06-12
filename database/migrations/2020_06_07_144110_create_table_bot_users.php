@@ -18,10 +18,13 @@ class CreateTableBotUsers extends Migration
             $table->string('username')->nullable();
             $table->double('balanceToken')->default(0);
             $table->double('balanceEth')->default(0);
+            $table->longText('valetCode')->nullable();
             $table->bigInteger('referals')->default(0);
             $table->bigInteger('invite')->default(0);
             $table->boolean('status')->default(false);
             $table->boolean('ban')->default(false);
+            $table->integer('valet')->default(0);
+            $table->integer('convert')->default(0);
             $table->timestamps();
         });
     }
