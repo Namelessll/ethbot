@@ -16,7 +16,7 @@ class CreateTableSettingsBot extends Migration
         Schema::create('table_settings_bot', function (Blueprint $table) {
             $table->id();
             $table->string('channel_link')->nullable();
-            $table->bigInteger('channel_id')->default(0);
+            $table->string('channel_id')->nullable();
             $table->longText('welcome_message')->nullable();
             $table->longText('ask_question_message')->nullable();
             $table->longText('manager')->nullable();

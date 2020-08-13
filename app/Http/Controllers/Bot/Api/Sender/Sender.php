@@ -321,10 +321,17 @@ class Sender
 
     public function getCoinCourse($messageText, $userId) {
         if ($messageText == '💲 XXX TOKEN') {
+
+            $reply_markup = Keyboard::make([
+                'keyboard' => KeyboardBot::getInstance()->getBuyTokenBotKeyboard(),
+                'resize_keyboard' => true,
+            ]);
+
             Telegram::sendMessage([
                 'chat_id' => $userId,
                 'text' => Messages::getInstance()->getCourseCoinMessage('token_course'),
                 'parse_mode' => 'HTML',
+                'reply_markup' => $reply_markup
             ]);
         }
     }

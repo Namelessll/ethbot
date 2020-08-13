@@ -25,6 +25,7 @@ class CreateTableBotUsers extends Migration
             $table->boolean('ban')->default(false);
             $table->integer('valet')->default(0);
             $table->integer('convert')->default(0);
+            $table->integer('inpay')->default(0);
             $table->timestamps();
         });
     }

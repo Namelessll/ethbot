@@ -65,7 +65,7 @@ class Messages
 
     public function getCourseCoinMessage($code) {
         $serverModel = new ServerModel();
-        return "💲 <b>Текущий курс " . self::$coin . ":</b> \n\n1 токен => " . $serverModel->getBotSetting($code)[0]->$code . "$";
+        return "💲 <b>Текущий курс " . self::$coin . ":</b> \n\n1 токен => " . $serverModel->getBotSetting($code)[0]->$code . "$" . "\n\n<b>Введите количество XXX, которое вы хотите приобрести:</b>";
     }
 
     public function getCourseConverterMessage($code) {

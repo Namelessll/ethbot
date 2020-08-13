@@ -33,6 +33,12 @@ class KeyboardBot
         ];
     }
 
+    public function getBuyTokenBotKeyboard() {
+        return [
+            ['🔙 Назад']
+        ];
+    }
+
     public function getStartDemandButton() {
         return [
             ['🔎 Проверить подписку на канал']
